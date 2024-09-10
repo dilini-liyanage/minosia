@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
-const config = {
+const config: Config = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -18,6 +19,12 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        'custom-bg-gradient':
+          'linear-gradient(89.1deg, rgba(141, 129, 216, 0.2) 32.88%, rgba(186, 130, 204, 0.2) 63.84%, rgba(115, 161, 230, 0.2) 82.33%, rgba(236, 88, 152, 0.2) 95.23%)',
+        'custom-text-gradient':
+          'linear-gradient(89.1deg, #73A1E6 11.81%, #8D81D8 38.47%, #BA82CC 67.71%, #EC5898 89.64%)',
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -74,7 +81,17 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.text-gradient': {
+          'background-clip': 'text',
+          '-webkit-background-clip': 'text',
+          color: 'transparent',
+        },
+      });
+    }),
+  ],
 } satisfies Config;
 
 export default config;
