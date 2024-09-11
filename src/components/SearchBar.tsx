@@ -11,7 +11,7 @@ export function SearchBar() {
   const [searchInternet, setSearchInternet] = useState(false);
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-[#F9F9FB] p-4 mt-8">
+    <div className="rounded-lg border border-gray-200 bg-[#F9F9FB] p-4 mt-8 min-w-[80vh]">
       <div className="flex justify-between gap-3 mb-4">
         <Textarea
           placeholder="Send a message to Minosia"
@@ -30,11 +30,6 @@ export function SearchBar() {
         <Button className="rounded-l-none bg-[#1E2124] hover:bg-[#2C3036] text-white">
           Search
         </Button>
-      </div>
-      <div className="flex justify-between">
-        {/* <Button className="rounded-l-none bg-[#1E2124] hover:bg-[#2C3036] text-white">
-          Search
-        </Button> */}
       </div>
     </div>
   );
