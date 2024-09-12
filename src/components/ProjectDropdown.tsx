@@ -30,7 +30,7 @@ export function ProjectDropdown(): JSX.Element {
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-1 px-3 w-full">
+    <div className="bg-[#F9F9FB] rounded-lg border border-[#F1F1F3] p-1 px-3 w-full">
       <div className="flex justify-between items-center">
         <div>
           {currentIndex !== 0 && (
