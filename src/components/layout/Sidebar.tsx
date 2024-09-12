@@ -1,21 +1,25 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 
 import alert from '../../../public/sidebar/alerts.svg';
+import assistantGradient from '../../../public/sidebar/assistant-copy.svg';
 import assistant from '../../../public/sidebar/assistant.svg';
+import libraryGradient from '../../../public/sidebar/library-gradient.svg';
 import library from '../../../public/sidebar/library.svg';
 import menuIcon from '../../../public/sidebar/menu-icon.svg';
+import regulationReviewGradient from '../../../public/sidebar/regulation-review-copy.svg';
 import regulationReview from '../../../public/sidebar/regulation-review.svg';
 import settings from '../../../public/sidebar/settings.svg';
 import { ProjectDropdown } from '../ProjectDropdown';
-import { Separator } from '../ui/separator';
 
 export function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -24,10 +28,14 @@ export function Sidebar() {
 
   return (
     <div
-      className={`bg-white border-r transition-all duration-300 ${isExpanded ? 'w-64' : 'w-20'} flex flex-col`}
+      className={`bg-white border-r transition-all duration-300 ${
+        isExpanded ? 'w-64' : 'w-20'
+      } flex flex-col`}
     >
       <div
-        className={`flex ${isExpanded ? 'justify-between' : 'justify-center'} my-3 mb-5 px-3`}
+        className={`flex ${
+          isExpanded ? 'justify-between' : 'justify-center'
+        } my-3 mb-5 px-3`}
       >
         {isExpanded && (
           <div className="flex items-center gap-1">
@@ -46,30 +54,37 @@ export function Sidebar() {
         </Button>
       </div>
       <div className="px-3 py-4">{isExpanded && <ProjectDropdown />}</div>
-      <div className="flex-1 ">
+      <div className="flex-1">
         <nav className="space-y-3 font-semibold px-3">
           <SidebarLink
-            href="/regulation-review"
+            href="/assistant"
             icon={assistant}
+            gradientIcon={assistantGradient}
             text="Assistant"
+            iconAlt="Assistant icon"
             isExpanded={isExpanded}
           />
           <SidebarLink
-            href="/library"
+            href="/regulation-review"
             icon={regulationReview}
+            gradientIcon={regulationReviewGradient}
             text="Regulation Review"
+            iconAlt="Regulation Review icon"
             isExpanded={isExpanded}
           />
           <SidebarLink
             href="/library"
             icon={library}
+            gradientIcon={libraryGradient}
             text="Library"
+            iconAlt="Library icon"
             isExpanded={isExpanded}
           />
           <SidebarLink
-            href="/library"
+            href="/alerts"
             icon={alert}
-            text="Allert"
+            text="Alerts"
+            iconAlt="Alerts icon"
             isExpanded={isExpanded}
           />
         </nav>
@@ -97,6 +112,7 @@ export function Sidebar() {
             href="/settings"
             icon={settings}
             text="Settings"
+            iconAlt="Settings icon"
             isExpanded={isExpanded}
           />
         </div>
@@ -108,20 +124,37 @@ export function Sidebar() {
 function SidebarLink({
   href,
   icon,
+  gradientIcon,
   text,
+  iconAlt,
   isExpanded,
 }: {
   href: string;
   icon: string;
+  gradientIcon?: string;
   text: string;
+  iconAlt: string;
   isExpanded: boolean;
 }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
+  const handleMouseEnter = useCallback(() => setIsHovered(true), []);
+  const handleMouseLeave = useCallback(() => setIsHovered(false), []);
+
+  const iconSrc = (isHovered || isActive) && gradientIcon ? gradientIcon : icon;
+
   return (
     <Link
       href={href}
-      className={`flex items-center p-2 hover:bg-[#73A1E5] hover:bg-opacity-10 hover:rounded-lg hover:shadow-lg ${isExpanded ? 'justify-start' : 'justify-center'}`}
+      className={`flex items-center p-2 hover:bg-[#73A1E5] hover:bg-opacity-10 hover:rounded-lg hover:shadow-lg ${
+        isExpanded ? 'justify-start' : 'justify-center'
+      } ${isActive ? 'bg-[#73A1E5] bg-opacity-10 rounded-lg shadow-lg' : ''}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      <Image src={icon} alt={text} width={24} height={24} />
+      <Image src={iconSrc} alt={iconAlt} width={24} height={24} />
       {isExpanded && <span className="ml-3">{text}</span>}
     </Link>
   );
