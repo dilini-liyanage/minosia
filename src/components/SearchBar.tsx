@@ -4,12 +4,55 @@ import React, { useState } from 'react';
 import { Paperclip } from 'lucide-react';
 import Image from 'next/image';
 
-import { Button } from '@/components/ui/button';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 
+const focusOptions = [
+  {
+    id: 'regulatory',
+    label: 'Regulatory Approval',
+    description:
+      'Retrieve information on the approval status of drugs or medical devices across different regions.',
+    imgSrc: '/searchbar/regulatory-approval.svg',
+  },
+  {
+    id: 'pricing',
+    label: 'Pricing and Reimbursement',
+    description:
+      'Provide details on the pricing and reimbursement status of drugs in various countries.',
+    imgSrc: '/searchbar/pricing-and-reimbursement.svg',
+  },
+  {
+    id: 'clinical',
+    label: 'Clinical Trials',
+    description:
+      'Access information about ongoing or completed clinical trials for specific drugs or conditions.',
+    imgSrc: '/searchbar/clinical-trials.svg',
+  },
+  {
+    id: 'surveillance',
+    label: 'Post-Market Surveillance',
+    description:
+      'Get insights on post-market safety data or surveillance issues related to a drug or device.',
+    imgSrc: '/searchbar/post-market-surveillance.svg',
+  },
+  {
+    id: 'academic',
+    label: 'Academic',
+    description:
+      'Search for relevant academic publications and research on regulatory and market access topics.',
+    imgSrc: '/searchbar/academic.svg',
+  },
+];
+
 export function SearchBar() {
   const [searchInternet, setSearchInternet] = useState(false);
+  const [focusOption, setFocusOption] = useState('Focus');
 
   return (
     <div className="rounded-lg border border-gray-200 bg-[#F9F9FB] p-4 mt-8">
@@ -22,15 +65,50 @@ export function SearchBar() {
       </div>
       <div className="flex justify-between space-x-4">
         <div className="flex items-center space-x-8">
-          <div className="flex gap-2">
-            <Image
-              src="/icons/focus-menu.svg"
-              alt="focus-menu"
-              width={24}
-              height={24}
-            />
-            <span className="text-sm font-medium text-gray-700">Focus</span>
-          </div>
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className="flex gap-2 items-center bg-[#F0F0F2] p-1 px-3 rounded-full">
+                <Image
+                  src="/icons/focus-menu.svg"
+                  alt="focus-menu"
+                  width={24}
+                  height={24}
+                />
+                <span className="text-sm font-medium text-gray-700">
+                  {focusOption}
+                </span>
+              </button>
+            </PopoverTrigger>
+            <PopoverContent
+              className="w-[90vh] mb-4 p-0"
+              align="start"
+              sideOffset={5}
+            >
+              <div className="grid grid-cols-3 gap-0 ">
+                {focusOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    className="text-left p-3 hover:bg-gray-100 hover:rounded-lg m-2 transition-colors"
+                    onClick={() => setFocusOption(option.label)}
+                  >
+                    <div className="flex gap-2 mb-1">
+                      <Image
+                        src={option.imgSrc}
+                        alt="arrow-up"
+                        width={16}
+                        height={16}
+                      />
+                      <div className="font-semibold">{option.label}</div>
+                    </div>
+
+                    <div className="text-sm text-gray-500">
+                      {option.description}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </PopoverContent>
+          </Popover>
           <div className="flex gap-2">
             <Switch
               checked={searchInternet}

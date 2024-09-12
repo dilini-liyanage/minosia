@@ -6,7 +6,6 @@ import alert from '../../../public/sidebar/alerts.svg';
 import assistant from '../../../public/sidebar/assistant.svg';
 import library from '../../../public/sidebar/library-gradient.svg';
 import regulationReview from '../../../public/sidebar/regulation-review.svg';
-import settings from '../../../public/sidebar/settings.svg';
 
 interface HeaderInfo {
   title: string;
@@ -26,10 +25,8 @@ export function Header() {
         return { title: 'Library', icon: library };
       case '/alerts':
         return { title: 'Alerts', icon: alert };
-      case '/settings':
-        return { title: 'Settings', icon: settings };
       default:
-        return { title: 'Minosia', icon: assistant }; // Default to assistant icon
+        return { title: 'Assistant', icon: assistant };
     }
   };
 
