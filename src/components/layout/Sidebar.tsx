@@ -14,6 +14,7 @@ import library from '../../../public/sidebar/library.svg';
 import menuIcon from '../../../public/sidebar/menu-icon.svg';
 import regulationReview from '../../../public/sidebar/regulation-review.svg';
 import settings from '../../../public/sidebar/settings.svg';
+import { ProjectDropdown } from '../ProjectDropdown';
 import { Separator } from '../ui/separator';
 
 export function Sidebar() {
@@ -25,11 +26,26 @@ export function Sidebar() {
     <div
       className={`bg-white border-r transition-all duration-300 ${isExpanded ? 'w-64' : 'w-20'} flex flex-col`}
     >
-      <div className={`${isExpanded ? 'self-end' : 'self-center'} my-4 px-3`}>
+      <div
+        className={`flex ${isExpanded ? 'justify-between' : 'justify-center'} my-3 mb-5 px-3`}
+      >
+        {isExpanded && (
+          <div className="flex items-center gap-1">
+            <Image
+              src="/logo/logo-white.svg"
+              alt="arrow-up"
+              width={32}
+              height={32}
+              className="bg-[#5664D2] p-1.5 m-1 rounded-sm"
+            />
+            <span className="text-2xl font-bold">Minosia</span>
+          </div>
+        )}
         <Button variant="ghost" size="icon" onClick={toggleSidebar}>
           <Image src={menuIcon} alt="Menu" width={28} height={28} />
         </Button>
       </div>
+      <div className="px-3 py-4">{isExpanded && <ProjectDropdown />}</div>
       <div className="flex-1 ">
         <nav className="space-y-3 font-semibold px-3">
           <SidebarLink
@@ -53,7 +69,7 @@ export function Sidebar() {
           <SidebarLink
             href="/library"
             icon={alert}
-            text="Library"
+            text="Allert"
             isExpanded={isExpanded}
           />
         </nav>
@@ -106,7 +122,7 @@ function SidebarLink({
       className={`flex items-center p-2 hover:bg-[#73A1E5] hover:bg-opacity-10 hover:rounded-lg hover:shadow-lg ${isExpanded ? 'justify-start' : 'justify-center'}`}
     >
       <Image src={icon} alt={text} width={24} height={24} />
-      {isExpanded && <span className="ml-2">{text}</span>}
+      {isExpanded && <span className="ml-3">{text}</span>}
     </Link>
   );
 }

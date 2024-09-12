@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Urbanist } from 'next/font/google';
 import './globals.css';
 
 import { Header } from '@/components/layout/Header';
 import { Sidebar } from '@/components/layout/Sidebar';
 
-const inter = Inter({ subsets: ['latin'] });
+const ubernist = Urbanist({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Minosia',
@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={ubernist.className}>
         <div className="flex h-screen">
           <Sidebar />
           <div className="flex flex-col flex-1">

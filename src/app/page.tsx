@@ -4,15 +4,15 @@ import { SearchBar } from '@/components/SearchBar';
 
 export default function Home() {
   return (
-    <div className="max-w-4xl mx-auto flex flex-col h-[90vh]  relative justify-center">
-      <div className=" absolute top-10">
-        <Welcome />
+    <div className="container mx-auto h-full">
+      <div className="2xl:mx-48 xl:mx-24 lg:mx-12 mx-0 flex flex-col  h-full">
+        <main className="flex-grow flex items-center justify-center px-4">
+          <Welcome />
+        </main>
+        <footer className="p-4">
+          <SearchBar />
+        </footer>
       </div>
-      <div className=" absolute bottom-0 ">
-        <SearchBar />
-      </div>
-
-      {/* <FeaturesGrid /> */}
     </div>
   );
 }
