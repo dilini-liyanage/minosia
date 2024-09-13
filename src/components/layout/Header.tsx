@@ -10,6 +10,7 @@ import regulationReview from '../../../public/sidebar/regulation-review.svg';
 interface HeaderInfo {
   title: string;
   icon: string;
+  time: number;
 }
 
 export function Header() {
@@ -18,15 +19,15 @@ export function Header() {
   const getHeaderInfo = (): HeaderInfo => {
     switch (pathname) {
       case '/assistant':
-        return { title: 'Assistant', icon: assistant };
+        return { title: 'Assistant', icon: assistant, time: 20 };
       case '/regulation-review':
-        return { title: 'Regulation Review', icon: regulationReview };
+        return { title: 'Regulation Review', icon: regulationReview, time: 5 };
       case '/library':
-        return { title: 'Library', icon: library };
+        return { title: 'Library', icon: library, time: 10 };
       case '/alerts':
-        return { title: 'Alerts', icon: alert };
+        return { title: 'Alerts', icon: alert, time: 20 };
       default:
-        return { title: 'Assistant', icon: assistant };
+        return { title: 'Assistant', icon: assistant, time: 20 };
     }
   };
 
@@ -42,7 +43,10 @@ export function Header() {
             width={24}
             height={24}
           />
-          <h1 className="text-xl font-semibold ml-3">{headerInfo.title}</h1>
+          <h1 className="text-lg font-semibold ml-3">{headerInfo.title}</h1>
+          <span className="ms-5 text-lg text-gray-500">
+            {headerInfo.time} Hours ago
+          </span>
         </div>
       </div>
     </header>

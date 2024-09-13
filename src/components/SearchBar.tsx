@@ -49,10 +49,21 @@ const focusOptions = [
     imgSrc: '/searchbar/academic.svg',
   },
 ];
+interface SearchBarProps {
+  onSendMessage: (message: string) => void;
+}
 
-export function SearchBar() {
+export function SearchBar({ onSendMessage }: SearchBarProps) {
   const [searchInternet, setSearchInternet] = useState(false);
   const [focusOption, setFocusOption] = useState('Focus');
+  const [message, setMessage] = useState('');
+
+  const handleSendMessage = () => {
+    if (message.trim()) {
+      onSendMessage(message.trim());
+      setMessage('');
+    }
+  };
 
   return (
     <div className="rounded-lg border border-gray-200 bg-[#F9F9FB] p-4 mt-8">
@@ -60,6 +71,8 @@ export function SearchBar() {
         <Textarea
           placeholder="Send a message to Minosia"
           className="border-none"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
         />
         <Paperclip className="text-gray-400 self-stretch" />
       </div>
@@ -119,7 +132,10 @@ export function SearchBar() {
             </span>
           </div>
         </div>
-        <button className="rounded-full bg-[#1E2124] p-2">
+        <button
+          className="rounded-full bg-[#1E2124] p-2"
+          onClick={handleSendMessage}
+        >
           <Image
             src="/icons/arrow-up.svg"
             alt="arrow-up"
