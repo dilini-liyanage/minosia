@@ -148,9 +148,9 @@ function SidebarLink({
   return (
     <Link
       href={href}
-      className={`flex items-center p-2 hover:bg-[#73A1E5] hover:bg-opacity-10 hover:rounded-lg hover:shadow-lg ${
+      className={`flex items-center p-2 hover:bg-custom-hover-gradient hover:bg-opacity-10 hover:rounded-lg hover:shadow-lg ${
         isExpanded ? 'justify-start' : 'justify-center'
-      } ${isActive ? 'bg-[#73A1E5] bg-opacity-10 rounded-lg shadow-lg' : ''}`}
+      } ${isActive ? 'bg-custom-hover-gradient bg-opacity-10 rounded-lg shadow-lg' : ''}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
