@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { createRoot } from 'react-dom/client';
 
+import AnalysisReport from './AnalysisReport';
 import AnalysisResults from './AnalysisResults';
 
 const RegulationReviewDocumentLayout = () => {
@@ -240,66 +241,13 @@ const RegulationReviewDocumentLayout = () => {
         </div>
 
         {/* Right side - Analysis Results */}
-        <div className="col-span-3 bg-white">
+        <div className="col-span-3 space-y-4 h-[80vh] overflow-y-auto bg-white">
           <div>
             <AnalysisResults />
           </div>
-          {/* <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span>Completed TLV submission form with all required fields filled</span>
-              <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-            </div>
-            <div className="flex justify-between items-center">
-              <span>Clinical data validation against original study outcomes</span>
-              <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-            </div>
-            <div className="flex justify-between items-center">
-              <span>Correct comparator selection verified</span>
-              <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-            </div>
-            <div className="flex justify-between items-center">
-              <span>Cost-utility analysis reviewed for consistency and accuracy</span>
-              <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-            </div>
-            <div className="flex justify-between items-center">
-              <span>Checking Cost-Effectiveness</span>
-              <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-            </div>
+          <div>
+            <AnalysisReport />
           </div>
-          
-          <h3 className="text-lg font-semibold mt-6 mb-2">Analysis Report</h3>
-          <p className="mb-4">The document partially complies with TLV regulations. While it meets most requirements, there are areas that need attention to ensure full compliance.</p>
-          
-          <h3 className="text-lg font-semibold mb-2">Compliance Checklist</h3>
-          <div className="space-y-2">
-            <div className="flex justify-between items-center">
-              <span>Completed TLV submission form with all required fields filled</span>
-              <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-            </div>
-            <div className="flex justify-between items-center">
-              <span>Clinical data validation against original study outcomes</span>
-              <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-            </div>
-            <div className="flex justify-between items-center">
-              <span>Correct comparator selection verified</span>
-              <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-            </div>
-            <div className="flex justify-between items-center">
-              <span>Cost-utility analysis reviewed for consistency and accuracy</span>
-              <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-            </div>
-            <div className="flex justify-between items-center">
-              <span>Checking Cost-Effectiveness</span>
-              <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-            </div>
-          </div>
-          
-          <h3 className="text-lg font-semibold mt-6 mb-2">Recommended Actions</h3>
-          <ol className="list-decimal pl-5">
-            <li className="mb-2">Re-Evaluate the Cost-Utility Analysis</li>
-            <li className="mb-2">Correct and Validate the Cost-Effectiveness Analysis</li>
-            <li>Review and Resolve the Warning on Comparator Selection</li>
-          </ol> */}
         </div>
       </div>
     </div>
