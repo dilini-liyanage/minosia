@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 
 import { format } from 'date-fns';
 import Image from 'next/image';
-import { FileIcon, defaultStyles } from 'react-file-icon';
 
 import excelIcon from '../../../public/file-icons/excel-icon.svg';
 import pdfIcon from '../../../public/file-icons/pdf-icon.svg';
@@ -255,7 +254,7 @@ const Library: React.FC = () => {
   );
 
   return (
-    <div className="p-4 flex flex-col justify-between h-full">
+    <div className="flex flex-col justify-between h-full">
       <div className="flex justify-between">
         <div className="flex space-x-4">
           <div className="flex border rounded-lg">
@@ -314,7 +313,7 @@ const Library: React.FC = () => {
       </div>
       <div className="flex-grow overflow-auto">
         <table className="w-full border-collapse">
-          <thead className="sticky top-0 bg-white">
+          <thead className="sticky bg-[#F9F9FB] top-0">
             <tr className="border border-[#E8E9E9] items-center">
               <th className="p-2 border border-[#E8E9E9]">Document Title</th>
               <th className="p-2 border border-[#E8E9E9]">File Type</th>
