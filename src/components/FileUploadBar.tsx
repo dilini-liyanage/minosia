@@ -42,7 +42,7 @@ const FileUploadBar = () => {
   };
 
   return (
-    <div className="flex justify-between space-x-4 p-1 bg-white border border-gray-200 rounded-lg">
+    <div className="flex justify-between space-x-4 p-2 bg-[#F9F9FB] border border-gray-200 rounded-lg">
       <div className="flex">
         <Select onValueChange={(value) => setSelectedRegulation(value)}>
           <SelectTrigger className="w-auto">
@@ -82,13 +82,13 @@ const FileUploadBar = () => {
             </Button>
           </div>
         )}
-        <div className="flex bg-black text-white py-2 px-4 rounded-lg items-center cursor-pointer gap-2">
+        <button className="flex bg-black text-white py-2 px-4 rounded-lg items-center cursor-pointer gap-2">
           <Image src={pdfIcon} alt="PDF" width={24} height={24} />
           <label>
             Add File
             <input type="file" className="hidden" onChange={handleFileUpload} />
           </label>
-        </div>
+        </button>
       </div>
     </div>
   );
