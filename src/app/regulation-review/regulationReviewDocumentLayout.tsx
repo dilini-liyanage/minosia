@@ -4,6 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { createRoot } from 'react-dom/client';
 
+import AnalysisResults from './AnalysisResults';
+
 const RegulationReviewDocumentLayout = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -238,10 +240,10 @@ const RegulationReviewDocumentLayout = () => {
         </div>
 
         {/* Right side - Analysis Results */}
-        <div className="col-span-3 bg-white p-6 rounded-lg border">
-          <h2 className="text-xl font-bold mb-4">
-            Analysis Results for UK NICE Health Technology Evaluation
-          </h2>
+        <div className="col-span-3 bg-white">
+          <div>
+            <AnalysisResults />
+          </div>
           {/* <div className="space-y-4">
             <div className="flex justify-between items-center">
               <span>Completed TLV submission form with all required fields filled</span>
