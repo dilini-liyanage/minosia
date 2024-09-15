@@ -47,10 +47,11 @@ const AnalysisItem: React.FC<AnalysisItemProps> = ({
 );
 
 const LoadingIcon: React.FC = () => (
-  <div className="w-4 h-6 flex items-end space-x-1">
-    <div className="w-1 h-3 bg-blue-400 animate-pulse"></div>
-    <div className="w-1 h-4 bg-blue-500 animate-pulse"></div>
-    <div className="w-1 h-2 bg-blue-300 animate-pulse"></div>
+  <div className="w-5 h-6 flex items-end space-x-0.5">
+    <div className="w-1.5 h-2 mb-1 bg-[#5664D2] rounded-full animate-pulse"></div>
+    <div className="w-1.5 h-4 bg-[#5664D2] rounded-full animate-pulse"></div>
+    <div className="w-1.5 h-4 mb-2 bg-[#5664D2] rounded-full animate-pulse"></div>
+    <div className="w-1.5 h-2 mb-3 bg-[#5664D2] rounded-full animate-pulse"></div>
   </div>
 );
 
