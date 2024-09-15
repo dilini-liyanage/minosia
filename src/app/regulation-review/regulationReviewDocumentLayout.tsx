@@ -7,29 +7,102 @@ import { createRoot } from 'react-dom/client';
 import AnalysisReport from './AnalysisReport';
 import AnalysisResults from './AnalysisResults';
 
+type HighlightWord =
+  | 'tlv'
+  | 'introduction section'
+  | 'AI-driven analysis'
+  | 'purpose'
+  | 'thoroughness'
+  | 'articulating';
+
+const highlightColors: Record<HighlightWord, string> = {
+  tlv: 'bg-blue-200',
+  'introduction section': 'bg-green-200',
+  'AI-driven analysis': 'bg-yellow-200',
+  purpose: 'bg-red-200',
+  thoroughness: 'bg-purple-200',
+  articulating: 'bg-pink-200',
+};
+
 const RegulationReviewDocumentLayout = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const contentRef = useRef<HTMLDivElement>(null);
   const [content, setContent] = useState<React.ReactNode[][]>([]);
 
+  const highlightWords: Record<HighlightWord, string> = {
+    tlv: 'Tandvårds- och läkemedelsförmånsverket, the Swedish Dental and Pharmaceutical Benefits Agency',
+    'introduction section':
+      "This is correct. The introduction provides a clear and concise overview of the dossier's objectives and scope.",
+    'AI-driven analysis':
+      'Potential privacy concern. Verify that sensitive patient data is anonymized or securely handled in compliance with GDPR.',
+    purpose:
+      'Potential privacy concern. Verify that sensitive patient data is anonymized or securely handled in compliance with GDPR.',
+    thoroughness:
+      'This is correct. The dossier demonstrates thoroughness in documenting the patient treatment and financial breakdown',
+    articulating:
+      'This is correct. The introduction clearly articulates the scope and objectives of the reimbursement claim.',
+  };
+
+  const highlightText = (text: string) => {
+    let result: React.ReactNode[] = [];
+    let remainingText = text;
+
+    while (remainingText.length > 0) {
+      let earliestMatch: { phrase: HighlightWord; index: number } | null = null;
+
+      for (const phrase of Object.keys(highlightWords) as HighlightWord[]) {
+        const index = remainingText.toLowerCase().indexOf(phrase.toLowerCase());
+        if (index !== -1 && (!earliestMatch || index < earliestMatch.index)) {
+          earliestMatch = { phrase, index };
+        }
+      }
+
+      if (earliestMatch) {
+        if (earliestMatch.index > 0) {
+          result.push(remainingText.slice(0, earliestMatch.index));
+        }
+        const matchedText = remainingText.slice(
+          earliestMatch.index,
+          earliestMatch.index + earliestMatch.phrase.length
+        );
+        result.push(
+          <span
+            key={result.length}
+            className={`${highlightColors[earliestMatch.phrase]} cursor-pointer`}
+          >
+            {matchedText}
+          </span>
+        );
+        remainingText = remainingText.slice(
+          earliestMatch.index + earliestMatch.phrase.length
+        );
+      } else {
+        result.push(remainingText);
+        break;
+      }
+    }
+
+    return result;
+  };
+
   const sampleContent = [
     <div key="intro" className="text-base font-bold border-b mb-2">
       Introduction to TLV Reimbursement Dossier
     </div>,
     <p key="p1 mb-2" className="text-sm">
-      This is the introduction section of the TLV reimbursement dossier. The
+      {highlightText(`This is the introduction section of the TLV reimbursement dossier. The
       purpose of this document is to demonstrate the structure and thoroughness
       of a reimbursement claim under the TLV (Tandvårds- och
       läkemedelsförmånsverket) guidelines. This page outlines the objectives of
       the dossier, including the scope of the reimbursement claim, patient
       details, medical services provided, and the financial breakdown of the
       claim. In addition, this document highlights the AI-driven analysis that
-      will ensure accuracy and compliance with TLV&apos;s complex reimbursement
-      process.
+      will ensure accuracy and compliance with TLV's complex reimbursement
+      process.`)}
       <br />
-      The introduction provides a high-level overview of the content in the
-      following pages, including an assessment of compliance with TLV&apos;s
+      {highlightText(`The introduction provides a high-level overview of the content in the
+      following pages, including an assessment of compliance with TLV's
       regulatory requirements, the supporting documents attached to each claim,
       and potential areas of improvement identified by the AI. It is essential
       that the introduction sets the tone for the rest of the dossier by clearly
@@ -37,9 +110,9 @@ const RegulationReviewDocumentLayout = () => {
       reimbursement request. Special attention should be paid to whether the
       introduction sufficiently addresses the TLV requirements for reimbursement
       eligibility, such as patient treatment justification, cost transparency,
-      and adherence to legal and ethical standards.
+      and adherence to legal and ethical standards.`)}
       <br />
-      In this dossier, our AI tool will identify key areas such as the quality
+      {highlightText(`In this dossier, our AI tool will identify key areas such as the quality
       of documentation, alignment with TLV guidelines, potential gaps in
       compliance, and actionable recommendations to strengthen the claim. The AI
       will ensure that the dossier meets the high standards required by TLV for
@@ -47,21 +120,21 @@ const RegulationReviewDocumentLayout = () => {
       deeper into the specific claims, their justifications, and the supporting
       documents that accompany each claim. Each page has been carefully curated
       to guide the reviewer through the reimbursement process in a structured,
-      compliant, and transparent manner.
+      compliant, and transparent manner.`)}
     </p>,
     <p key="p2" className="text-sm">
-      1. This is the introduction section of the TLV reimbursement dossier. The
+      {highlightText(`1. This is the introduction section of the TLV reimbursement dossier. The
       purpose of this document is to demonstrate the structure and thoroughness
       of a reimbursement claim under the TLV (Tandvårds- och
       läkemedelsförmånsverket) guidelines. This page outlines the objectives of
       the dossier, including the scope of the reimbursement claim, patient
       details, medical services provided, and the financial breakdown of the
       claim. In addition, this document highlights the AI-driven analysis that
-      will ensure accuracy and compliance with TLV&apos;s complex reimbursement
-      process.
+      will ensure accuracy and compliance with TLV's complex reimbursement
+      process.`)}
       <br />
-      The introduction provides a high-level overview of the content in the
-      following pages, including an assessment of compliance with TLV&apos;s
+      {highlightText(`The introduction provides a high-level overview of the content in the
+      following pages, including an assessment of compliance with TLV's
       regulatory requirements, the supporting documents attached to each claim,
       and potential areas of improvement identified by the AI. It is essential
       that the introduction sets the tone for the rest of the dossier by clearly
@@ -69,9 +142,9 @@ const RegulationReviewDocumentLayout = () => {
       reimbursement request. Special attention should be paid to whether the
       introduction sufficiently addresses the TLV requirements for reimbursement
       eligibility, such as patient treatment justification, cost transparency,
-      and adherence to legal and ethical standards.
+      and adherence to legal and ethical standards.`)}
       <br />
-      In this dossier, our AI tool will identify key areas such as the quality
+      {highlightText(`In this dossier, our AI tool will identify key areas such as the quality
       of documentation, alignment with TLV guidelines, potential gaps in
       compliance, and actionable recommendations to strengthen the claim. The AI
       will ensure that the dossier meets the high standards required by TLV for
@@ -79,7 +152,7 @@ const RegulationReviewDocumentLayout = () => {
       deeper into the specific claims, their justifications, and the supporting
       documents that accompany each claim. Each page has been carefully curated
       to guide the reviewer through the reimbursement process in a structured,
-      compliant, and transparent manner.
+      compliant, and transparent manner.`)}
     </p>,
   ];
 
@@ -185,14 +258,6 @@ const RegulationReviewDocumentLayout = () => {
     processElements();
   }, []);
 
-  const handlePrevPage = () => {
-    setCurrentPage((prev) => Math.max(1, prev - 1));
-  };
-
-  const handleNextPage = () => {
-    setCurrentPage((prev) => Math.min(totalPages, prev + 1));
-  };
-
   return (
     <div className="h-full mt-4">
       <div className="grid grid-cols-7 gap-4">
@@ -203,7 +268,7 @@ const RegulationReviewDocumentLayout = () => {
           </div>
           <div className="grid grid-cols-3 gap-3 h-[73vh]">
             <div className="col-span-2 border rounded-lg p-2 overflow-hidden text-sm">
-              <div ref={contentRef} className="h-full overflow-hidden">
+              <div ref={contentRef} className="h-full overflow-auto">
                 {content[currentPage - 1]?.map((element, index) => (
                   <React.Fragment key={index}>{element}</React.Fragment>
                 ))}
@@ -218,14 +283,18 @@ const RegulationReviewDocumentLayout = () => {
                   <div className="flex gap-2">
                     <button
                       className="p-1 rounded-full bg-black text-white"
-                      onClick={handlePrevPage}
+                      onClick={() =>
+                        setCurrentPage((prev) => Math.max(1, prev - 1))
+                      }
                       disabled={currentPage === 1}
                     >
                       <ChevronLeft size={16} />
                     </button>
                     <button
                       className="p-1 rounded-full bg-black text-white"
-                      onClick={handleNextPage}
+                      onClick={() =>
+                        setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                      }
                       disabled={currentPage === totalPages}
                     >
                       <ChevronRight size={16} />
@@ -233,8 +302,21 @@ const RegulationReviewDocumentLayout = () => {
                   </div>
                 </div>
               </div>
-              <div className="border bg-[#F9F9FB] rounded-lg p-2">
-                <div className="text-base font-semibold mb-3">Highlights</div>
+              <div className="border bg-[#F9F9FB] h-[67vh] overflow-y-auto rounded-lg p-2">
+                <div className="text-base font-semibold mb-3 border-b pb-1">
+                  Highlights
+                </div>
+                {Object.entries(highlightWords).map(([word, definition]) => (
+                  <div key={word} className="mb-3 border-b pb-1">
+                    <div className="flex gap-2 items-center">
+                      <div
+                        className={`w-2 h-2 rounded-full ${highlightColors[word as HighlightWord]}`}
+                      ></div>
+                      <div className="font-semibold text-sm">{word}: </div>
+                    </div>
+                    <div className="text-sm">{definition}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
