@@ -19,6 +19,7 @@ import menuIcon from '../../../public/sidebar/menu-icon.svg';
 import regulationReviewGradient from '../../../public/sidebar/regulation-review-gradient.svg';
 import regulationReview from '../../../public/sidebar/regulation-review.svg';
 import settings from '../../../public/sidebar/settings.svg';
+import ChatList from '../ChatList';
 import { ProjectDropdown } from '../ProjectDropdown';
 
 export function Sidebar() {
@@ -89,6 +90,9 @@ export function Sidebar() {
           />
         </nav>
         <Separator className="my-4" />
+        <div className="px-3">
+          <ChatList />
+        </div>
       </div>
 
       <div className="flex flex-col gap-3 mb-3">
