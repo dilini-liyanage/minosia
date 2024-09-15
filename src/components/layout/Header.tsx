@@ -3,9 +3,9 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import alert from '../../../public/sidebar/alerts.svg';
-import assistant from '../../../public/sidebar/assistant.svg';
+import assistantGradient from '../../../public/sidebar/assistant-gradient.svg';
 import library from '../../../public/sidebar/library-gradient.svg';
-import regulationReview from '../../../public/sidebar/regulation-review.svg';
+import regulationReviewGradient from '../../../public/sidebar/regulation-review-gradient.svg';
 
 interface HeaderInfo {
   title: string;
@@ -19,15 +19,19 @@ export function Header() {
   const getHeaderInfo = (): HeaderInfo => {
     switch (pathname) {
       case '/assistant':
-        return { title: 'Assistant', icon: assistant, time: 20 };
+        return { title: 'Assistant', icon: assistantGradient, time: 20 };
       case '/regulation-review':
-        return { title: 'Regulation Review', icon: regulationReview, time: 5 };
+        return {
+          title: 'Regulation Review',
+          icon: regulationReviewGradient,
+          time: 5,
+        };
       case '/library':
         return { title: 'Library', icon: library, time: 10 };
       case '/alerts':
         return { title: 'Alerts', icon: alert, time: 20 };
       default:
-        return { title: 'Assistant', icon: assistant, time: 20 };
+        return { title: 'Assistant', icon: assistantGradient, time: 20 };
     }
   };
 

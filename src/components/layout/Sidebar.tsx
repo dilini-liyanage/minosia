@@ -11,12 +11,12 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 
 import alert from '../../../public/sidebar/alerts.svg';
-import assistantGradient from '../../../public/sidebar/assistant-copy.svg';
+import assistantGradient from '../../../public/sidebar/assistant-gradient.svg';
 import assistant from '../../../public/sidebar/assistant.svg';
 import libraryGradient from '../../../public/sidebar/library-gradient.svg';
 import library from '../../../public/sidebar/library.svg';
 import menuIcon from '../../../public/sidebar/menu-icon.svg';
-import regulationReviewGradient from '../../../public/sidebar/regulation-review-copy.svg';
+import regulationReviewGradient from '../../../public/sidebar/regulation-review-gradient.svg';
 import regulationReview from '../../../public/sidebar/regulation-review.svg';
 import settings from '../../../public/sidebar/settings.svg';
 import { ProjectDropdown } from '../ProjectDropdown';
