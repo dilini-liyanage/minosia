@@ -20,11 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={ubernist.className}>
-        <div className="flex h-screen">
+        <div className="flex h-screen overflow-hidden">
           <Sidebar />
-          <div className="flex flex-col flex-1">
+          <div className="flex flex-col flex-1 overflow-hidden">
             <Header />
-            <main className="flex-1 p-6">{children}</main>
+            <main className="flex-1 overflow-hidden p-4">{children}</main>
           </div>
         </div>
       </body>

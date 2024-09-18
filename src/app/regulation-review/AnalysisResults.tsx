@@ -24,7 +24,7 @@ const AnalysisItem: React.FC<AnalysisItemProps> = ({
       onClick={onToggle}
       aria-expanded={isExpanded}
     >
-      <span className="font-medium">{title}</span>
+      <span className="font-medium text-sm">{title}</span>
       <div className="flex items-center">
         <span
           className={`mr-2 px-3 py-1 text-sm rounded-full ${
@@ -118,7 +118,7 @@ const AnalysisResults: React.FC = () => {
 
   return (
     <div className="bg-white p-3 rounded-lg border">
-      <h2 className="text-base font-semibold border-b mb-3">
+      <h2 className="text-sm font-semibold border-b mb-3">
         Analysis Results for UK NICE Health Technology Evaluation
       </h2>
       {loading ? (

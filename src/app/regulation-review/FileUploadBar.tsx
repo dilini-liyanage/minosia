@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import pdfIcon from '../../public/file-icons/pdf-icon.svg';
+import pdfIcon from '../../../public/file-icons/pdf-icon.svg';
 
 interface FileData {
   title: string;
@@ -45,24 +45,36 @@ const FileUploadBar = () => {
     <div className="flex justify-between space-x-4 p-2 bg-[#F9F9FB] border border-gray-200 rounded-lg">
       <div className="flex">
         <Select onValueChange={(value) => setSelectedRegulation(value)}>
-          <SelectTrigger className="w-auto">
-            <SelectValue placeholder="Select Regulation" />
+          <SelectTrigger className="w-auto bg-none">
+            <SelectValue
+              placeholder="Select Regulation"
+              className="text-sm font-normal bg-none"
+            />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="regulation1">
+            <SelectItem value="regulation1" className="text-sm">
               UK NICE Health Technology Evaluation
             </SelectItem>
-            <SelectItem value="regulation2">Regulation 2</SelectItem>
+            <SelectItem value="regulation2" className="text-sm">
+              Regulation 2
+            </SelectItem>
           </SelectContent>
         </Select>
 
         <Select onValueChange={(value) => setSelectedApplicationType(value)}>
-          <SelectTrigger className="w-auto">
-            <SelectValue placeholder="Application Type" />
+          <SelectTrigger className="w-auto bg-none">
+            <SelectValue
+              placeholder="Application Type"
+              className="text-sm font-normal bg-none"
+            />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="type1">Health technology assessment</SelectItem>
-            <SelectItem value="type2">Type 2</SelectItem>
+            <SelectItem value="type1" className="text-sm">
+              Health technology assessment
+            </SelectItem>
+            <SelectItem value="type2" className="text-sm">
+              Type 2
+            </SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -83,9 +95,9 @@ const FileUploadBar = () => {
           </div>
         )}
         <button className="flex bg-black text-white py-2 px-4 rounded-lg items-center cursor-pointer gap-2">
-          <Image src={pdfIcon} alt="PDF" width={24} height={24} />
-          <label>
-            Add File
+          <Image src={pdfIcon} alt="PDF" width={20} height={20} />
+          <label className="text-sm font-normal">
+            Upload file
             <input type="file" className="hidden" onChange={handleFileUpload} />
           </label>
         </button>

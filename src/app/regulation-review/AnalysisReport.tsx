@@ -14,6 +14,7 @@ interface ChecklistItem {
 }
 
 interface RecommendedAction {
+  id: number;
   text: string;
 }
 
@@ -102,9 +103,15 @@ const AnalysisReport: React.FC = () => {
           { title: 'Checking Cost-Effectiveness', status: 'compliant' },
         ],
         recommendedActions: [
-          { text: 'Re-Evaluate the Cost-Utility Analysis' },
-          { text: 'Correct and Validate the Cost-Effectiveness Analysis' },
-          { text: 'Review and Resolve the Warning on Comparator Selection' },
+          { id: 1, text: 'Re-Evaluate the Cost-Utility Analysis' },
+          {
+            id: 2,
+            text: 'Correct and Validate the Cost-Effectiveness Analysis',
+          },
+          {
+            id: 3,
+            text: 'Review and Resolve the Warning on Comparator Selection',
+          },
         ],
       };
 
@@ -117,7 +124,7 @@ const AnalysisReport: React.FC = () => {
 
   return (
     <div className="bg-white border p-3 rounded-lg shadow-md">
-      <h2 className="text-base font-semibold mb-4">Analysis Report</h2>
+      <h2 className="text-sm font-semibold mb-3">Analysis Report</h2>
       {loading ? (
         <div className="space-y-4">
           {[...Array(5)].map((_, index) => (
@@ -130,32 +137,37 @@ const AnalysisReport: React.FC = () => {
       ) : analysisData ? (
         <>
           <div className="flex justify-between items-center text-sm mb-4 border-b pb-2">
-            <p className="text-gray-600">{analysisData.summary.text}</p>
+            <p className="text-[#4A4A4A] text-sm font-normal">
+              {analysisData.summary.text}
+            </p>
             <span className="bg-[#5664D2] text-white px-3 py-3 text-center rounded-lg w-48">
               Score: {analysisData.summary.score}/100
             </span>
           </div>
           <div>
-            <h3 className="font-semibold text-base mb-2">
-              Compliance Checklist
-            </h3>
+            <h3 className="font-semibold text-sm mb-2">Compliance Checklist</h3>
             <ul className="space-y-2 mb-4 border-b pb-2">
               {analysisData.checklist.map((item, index) => (
                 <li
                   key={index}
                   className="flex items-center text-sm justify-between p-2 bg-gray-50 rounded"
                 >
-                  <span>{item.title}</span>
+                  <span className="text-sm font-medium">{item.title}</span>
                   <StatusIcon status={item.status} />
                 </li>
               ))}
             </ul>
           </div>
-          <h3 className="font-semibold mb-2">Recommended Actions</h3>
+          <h3 className="font-semibold text-sm mb-2">Recommended Actions</h3>
           <ol className="list-decimal text-sm list-inside space-y-2">
             {analysisData.recommendedActions.map((action, index) => (
-              <li key={index} className="text-blue-600 bg-[#F9F9FB] py-1">
-                <span className="text-black ms-1">{action.text}</span>
+              <li key={index} className="flex">
+                <span className="text-sm font-extrabold pe-2 text-[#5664D2]">
+                  {action.id}
+                </span>
+                <span className="text-black text-sm font-medium ms-1">
+                  {action.text}
+                </span>
               </li>
             ))}
           </ol>

@@ -90,7 +90,7 @@ const RegulationReviewDocumentLayout = () => {
     <div key="intro" className="text-base font-bold border-b mb-2">
       Introduction to TLV Reimbursement Dossier
     </div>,
-    <p key="p1 mb-2" className="text-sm">
+    <p key="p1 mb-2" className="text-sm font-normal">
       {highlightText(`This is the introduction section of the TLV reimbursement dossier. The
       purpose of this document is to demonstrate the structure and thoroughness
       of a reimbursement claim under the TLV (Tandvårds- och
@@ -122,7 +122,7 @@ const RegulationReviewDocumentLayout = () => {
       to guide the reviewer through the reimbursement process in a structured,
       compliant, and transparent manner.`)}
     </p>,
-    <p key="p2" className="text-sm">
+    <p key="p2" className="text-sm font-normal">
       {highlightText(`1. This is the introduction section of the TLV reimbursement dossier. The
       purpose of this document is to demonstrate the structure and thoroughness
       of a reimbursement claim under the TLV (Tandvårds- och
@@ -259,25 +259,25 @@ const RegulationReviewDocumentLayout = () => {
   }, []);
 
   return (
-    <div className="h-full mt-4">
-      <div className="grid grid-cols-7 gap-4">
+    <div className="h-full flex flex-col overflow-hidden">
+      <div className="flex-1 grid grid-cols-7 gap-4 overflow-hidden">
         {/* Left side - Reimbursement Document */}
-        <div className="col-span-4 bg-white p-3 rounded-lg border">
-          <div className="text-base font-semibold border-b mb-3">
+        <div className="col-span-4 bg-white p-3 rounded-lg border flex flex-col overflow-hidden">
+          <div className="text-sm font-semibold border-b mb-3">
             Reimbursement Document
           </div>
-          <div className="grid grid-cols-3 gap-3 h-[73vh]">
-            <div className="col-span-2 border rounded-lg p-2 overflow-hidden text-sm">
-              <div ref={contentRef} className="h-full overflow-auto">
+          <div className="flex-1 grid grid-cols-3 gap-3 overflow-hidden">
+            <div className="col-span-2 border rounded-lg p-2 overflow-hidden flex flex-col">
+              <div ref={contentRef} className="flex-1 overflow-auto text-sm">
                 {content[currentPage - 1]?.map((element, index) => (
                   <React.Fragment key={index}>{element}</React.Fragment>
                 ))}
               </div>
             </div>
-            <div className="col-span-1 space-y-3">
+            <div className="col-span-1 flex flex-col space-y-3 overflow-hidden">
               <div className="border bg-[#F9F9FB] rounded-lg p-2">
                 <div className="flex items-center justify-between space-x-2">
-                  <span className="text-sm">
+                  <span className="text-sm font-medium">
                     Page {currentPage} of {totalPages}
                   </span>
                   <div className="flex gap-2">
@@ -302,7 +302,7 @@ const RegulationReviewDocumentLayout = () => {
                   </div>
                 </div>
               </div>
-              <div className="border bg-[#F9F9FB] h-[67vh] overflow-y-auto rounded-lg p-2">
+              <div className="border bg-[#F9F9FB] flex-1 overflow-y-auto rounded-lg p-2">
                 <div className="text-base font-semibold mb-3 border-b pb-1">
                   Highlights
                 </div>
@@ -323,7 +323,7 @@ const RegulationReviewDocumentLayout = () => {
         </div>
 
         {/* Right side - Analysis Results */}
-        <div className="col-span-3 space-y-4 h-[80vh] overflow-y-auto bg-white">
+        <div className="col-span-3 space-y-4 overflow-y-auto bg-white">
           <div>
             <AnalysisResults />
           </div>
