@@ -99,9 +99,11 @@ export function Sidebar() {
         <Separator className="my-4" />
 
         {/* ChatList*/}
-        <div className="flex-grow overflow-y-auto px-3">
-          <ChatList />
-        </div>
+        {isExpanded && (
+          <div className="flex-grow overflow-y-auto px-3">
+            <ChatList />
+          </div>
+        )}
       </div>
 
       {/* Footer */}

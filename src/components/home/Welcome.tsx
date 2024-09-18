@@ -10,7 +10,7 @@ export function Welcome() {
         alt="Picture of the author"
         className="items-center border border-gray-400 border-dashed p-2 mb-4 rounded-lg"
       />
-      <h1 className="xl:text-[40px] font-bold bg-custom-text-gradient mb-3 text-gradient">
+      <h1 className="text-[40px] font-bold bg-custom-text-gradient mb-3 text-gradient">
         Hello, How can we help you today
       </h1>
       <p className=" text-[#4A4A4A] text-sm">

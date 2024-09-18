@@ -268,7 +268,7 @@ const Library: React.FC = () => {
             <input
               type="text"
               placeholder="Search Files"
-              className="border-none focus:outline-none p-4 rounded-lg"
+              className="border-none focus:outline-none p-4 text-sm text-[#4A4A4A] rounded-lg"
               value={searchTerm}
               onChange={handleSearch}
             />
@@ -278,10 +278,10 @@ const Library: React.FC = () => {
             <Image
               src="/icons/file-upload-icon.svg"
               alt="file-upload-icon"
-              width={20}
-              height={20}
+              width={16}
+              height={16}
             />
-            <label>
+            <label className="text-sm">
               Add File
               <input
                 type="file"
@@ -291,22 +291,22 @@ const Library: React.FC = () => {
             </label>
           </div>
         </div>
-        <div className="flex space-x-2 bg-[#F1F1F1] p-2 rounded-lg font-semibold">
+        <div className="flex space-x-2 bg-[#F1F1F1] p-2 border rounded-lg font-semibold">
           <button
-            className={`px-4 py-2 rounded-lg ${viewType === 'project' ? 'bg-white' : 'bg-[#F1F1F1]'}`}
+            className={`px-4 py-2 rounded-lg font-medium ${viewType === 'project' ? 'bg-white text-black' : 'bg-[#F1F1F1] text-[#4A4A4A]'}`}
             onClick={() => setViewType('project')}
           >
             Project Files
           </button>
           <button
-            className={`px-4 py-2 rounded-lg ${viewType === 'organizational' ? 'bg-white' : 'bg-[#F1F1F1]'}`}
+            className={`px-4 py-2 rounded-lg font-medium ${viewType === 'organizational' ? 'bg-white text-black ' : 'bg-[#F1F1F1] text-[#4A4A4A]'}`}
             onClick={() => setViewType('organizational')}
           >
             Organizational Files
           </button>
         </div>
       </div>
-      <div className="text-xl font-bold mb-3 mt-5">
+      <div className="text-[15px] font-semibold mb-3 mt-5">
         {viewType === 'project'
           ? 'Project Documents'
           : 'Organizational Documents'}
@@ -314,7 +314,7 @@ const Library: React.FC = () => {
       <div className="flex-grow overflow-auto">
         <table className="w-full border-collapse">
           <thead className="sticky bg-[#F9F9FB] top-0">
-            <tr className="border border-[#E8E9E9] items-center">
+            <tr className="border border-[#E8E9E9] items-center text-[13px] text-[#4A4A4A]">
               <th className="p-2 border border-[#E8E9E9]">Document Title</th>
               <th className="p-2 border border-[#E8E9E9]">File Type</th>
               <th className="p-2 border border-[#E8E9E9]">Date Modified</th>
@@ -324,10 +324,10 @@ const Library: React.FC = () => {
           <tbody>
             {paginatedFiles.map((file, index) => (
               <tr key={index}>
-                <td className="p-2 border border-[#E8E9E9] ps-5">
+                <td className="p-2 border border-[#E8E9E9] font-semibold text-sm ps-5">
                   {file.title}
                 </td>
-                <td className="p-2 flex items-center justify-center border-b border-[#E8E9E9]">
+                <td className="p-2 text-sm flex items-center justify-center border-b border-[#E8E9E9]">
                   <Image
                     src={getFileIcon(file.fileType)}
                     alt={file.fileType}
@@ -337,10 +337,10 @@ const Library: React.FC = () => {
                   />
                   {file.fileType}
                 </td>
-                <td className="p-2 border border-[#E8E9E9] text-center">
+                <td className="p-2 border border-[#E8E9E9] text-sm text-center">
                   {file.dateModified}
                 </td>
-                <td className="p-2 border border-[#E8E9E9] text-center">
+                <td className="p-2 border border-[#E8E9E9] text-sm font-semibold text-center">
                   <div className="flex justify-center">
                     <Image
                       src="/icons/profile-frame.svg"
@@ -357,7 +357,7 @@ const Library: React.FC = () => {
           </tbody>
         </table>
       </div>
-      <div className="mt-4 flex items-center justify-end space-x-2">
+      <div className="mt-4 text-sm flex items-center justify-end space-x-2">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
