@@ -45,13 +45,13 @@ export function Sidebar() {
               alt="arrow-up"
               width={32}
               height={32}
-              className="bg-[#5664D2] p-1.5 m-1 rounded-sm"
+              className="bg-[#5664D2] p-1.5 m-1 w-[30px] h-[30px] rounded-sm"
             />
-            <span className="text-2xl font-bold">Minosia</span>
+            <span className="text-lg font-semibold">Minosia</span>
           </div>
         )}
         <Button variant="ghost" size="icon" onClick={toggleSidebar}>
-          <Image src={menuIcon} alt="Menu" width={28} height={28} />
+          <Image src={menuIcon} alt="Menu" width={24} height={24} />
         </Button>
       </div>
       <div className="px-3 py-4">{isExpanded && <ProjectDropdown />}</div>
@@ -95,7 +95,7 @@ export function Sidebar() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-3 mb-3">
+      <div className="flex flex-col gap-3 mb-3 bg-[#F9F9FB]">
         <div className="px-3">
           <div className="flex border border-gray-300 rounded-lg py-2 px-2 items-center">
             <Avatar className="h-7 w-7 self-center">
@@ -104,7 +104,7 @@ export function Sidebar() {
               </AvatarFallback>
             </Avatar>
             {isExpanded && (
-              <span className="text-sm font-medium text-gray-700 ms-2">
+              <span className="text-sm font-medium text-gray-700  ms-2">
                 Maya@pharmaspace.com
               </span>
             )}
@@ -152,14 +152,14 @@ function SidebarLink({
   return (
     <Link
       href={href}
-      className={`flex items-center p-2 hover:bg-custom-hover-gradient hover:bg-opacity-10 hover:rounded-lg hover:shadow-lg ${
+      className={`flex items-center p-2 hover:bg-custom-hover-gradient hover:rounded-lg ${
         isExpanded ? 'justify-start' : 'justify-center'
-      } ${isActive ? 'bg-custom-hover-gradient bg-opacity-10 rounded-lg shadow-lg' : ''}`}
+      } ${isActive ? 'bg-custom-hover-gradient bg-opacity-10 rounded-lg' : ''}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Image src={iconSrc} alt={iconAlt} width={24} height={24} />
-      {isExpanded && <span className="ml-3">{text}</span>}
+      {isExpanded && <span className="ml-3 text-sm font-semibold">{text}</span>}
     </Link>
   );
 }

@@ -9,10 +9,10 @@ interface Project {
 }
 
 const projects: Project[] = [
-  { id: 0, title: 'Minosia' },
-  { id: 1, title: 'Project 1' },
-  { id: 2, title: 'Project 2' },
-  { id: 3, title: 'Project 3' },
+  { id: 0, title: 'Project 1' },
+  { id: 1, title: 'Project 2' },
+  { id: 2, title: 'Project 3' },
+  { id: 3, title: 'Project 4' },
   // Add more projects as needed
 ];
 
@@ -33,12 +33,10 @@ export function ProjectDropdown(): JSX.Element {
     <div className="bg-[#F9F9FB] rounded-lg border border-[#F1F1F3] p-1 px-3 w-full">
       <div className="flex justify-between items-center">
         <div>
-          {currentIndex !== 0 && (
-            <div className="text-sm text-gray-500 pt-1">Selected Project</div>
-          )}
-          <div
-            className={`font-semibold ${currentIndex === 0 ? 'text-lg' : 'text-md'}`}
-          >
+          <div className="text-xs text-gray-500 font-light pt-1">
+            Selected Project
+          </div>
+          <div className="text-sm font-semibold">
             {projects[currentIndex].title}
           </div>
         </div>

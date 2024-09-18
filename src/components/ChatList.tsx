@@ -21,8 +21,8 @@ interface TaskGroup {
 }
 
 const TaskItem: React.FC<Task> = ({ name }) => (
-  <div className="flex items-center justify-between p-1 border-gray-700">
-    <p className="text-black text-base font-semibold truncate flex-1 min-w-0 mr-4">
+  <div className="flex items-center justify-between p-1 border-gray-700 hover:bg-custom-hover-gradient hover:rounded-lg active:bg-custom-hover-gradient active:rounded-lg">
+    <p className="text-black text-sm font-semibold truncate flex-1 min-w-0 mr-4">
       {name}
     </p>
     <DropdownMenu>
@@ -31,7 +31,7 @@ const TaskItem: React.FC<Task> = ({ name }) => (
           <MoreVertical className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-36 bg-white">
+      <DropdownMenuContent align="end" className="w-36 bg-white hover:bg-none">
         <DropdownMenuItem className="text-red-500">
           <Trash className="mr-2 h-4 w-4" />
           <span>Delete</span>
@@ -42,8 +42,8 @@ const TaskItem: React.FC<Task> = ({ name }) => (
 );
 
 const TaskGroup: React.FC<TaskGroup> = ({ date, tasks }) => (
-  <div className="mb-2">
-    <p className="text-sm text-[#4A4A4A] font-semibold mb-1">{date}</p>
+  <div className="mb-2 ">
+    <p className="text-xs text-[#4A4A4A] font-semibold mb-1">{date}</p>
     {tasks.map((task) => (
       <TaskItem key={task.id} {...task} />
     ))}
@@ -57,6 +57,12 @@ const ChatList = () => {
       tasks: [
         { id: '1', name: 'Grammar Correction Request' },
         { id: '2', name: 'Code Review for Project X' },
+        { id: '3', name: 'Grammar Correction Request' },
+        { id: '4', name: 'Code Review for Project X' },
+        { id: '1', name: 'Grammar Correction Request' },
+        { id: '2', name: 'Code Review for Project X' },
+        { id: '3', name: 'Grammar Correction Request' },
+        { id: '4', name: 'Code Review for Project X' },
       ],
     },
     {
