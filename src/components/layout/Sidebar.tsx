@@ -29,10 +29,11 @@ export function Sidebar() {
 
   return (
     <div
-      className={`bg-white border-r transition-all duration-300 ${
+      className={`bg-white border-r transition-all duration-300 h-screen ${
         isExpanded ? 'w-64' : 'w-20'
       } flex flex-col`}
     >
+      {/* Header */}
       <div
         className={`flex ${
           isExpanded ? 'justify-between' : 'justify-center'
@@ -54,8 +55,13 @@ export function Sidebar() {
           <Image src={menuIcon} alt="Menu" width={24} height={24} />
         </Button>
       </div>
+
+      {/* Project Dropdown */}
       <div className="px-3 py-4">{isExpanded && <ProjectDropdown />}</div>
-      <div className="flex-1">
+
+      {/* Main Content Area */}
+      <div className="flex flex-col flex-grow overflow-hidden">
+        {/* Navigation */}
         <nav className="space-y-3 font-semibold px-3">
           <SidebarLink
             href="/assistant"
@@ -89,14 +95,18 @@ export function Sidebar() {
             isExpanded={isExpanded}
           />
         </nav>
+
         <Separator className="my-4" />
-        <div className="px-3">
+
+        {/* ChatList*/}
+        <div className="flex-grow overflow-y-auto px-3">
           <ChatList />
         </div>
       </div>
 
-      <div className="flex flex-col gap-3 mb-3 bg-[#F9F9FB]">
-        <div className="px-3">
+      {/* Footer */}
+      <div className="mt-auto bg-[#F9F9FB]">
+        <div className="px-3 py-3">
           <div className="flex border border-gray-300 rounded-lg py-2 px-2 items-center">
             <Avatar className="h-7 w-7 self-center">
               <AvatarFallback className="bg-primary text-primary-foreground text-sm p-1">
@@ -111,7 +121,7 @@ export function Sidebar() {
           </div>
         </div>
         <Separator />
-        <div className="px-3">
+        <div className="px-3 py-3">
           <SidebarLink
             href="/settings"
             icon={settings}

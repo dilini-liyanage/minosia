@@ -70,7 +70,7 @@ export function SearchBar({ onSendMessage }: SearchBarProps) {
       <div className="flex justify-between gap-3 mb-4">
         <Textarea
           placeholder="Send a message to Minosia"
-          className="border-none"
+          className="border-none text-sm"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
@@ -87,7 +87,7 @@ export function SearchBar({ onSendMessage }: SearchBarProps) {
                   width={24}
                   height={24}
                 />
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-normal text-gray-700">
                   {focusOption}
                 </span>
               </button>
@@ -108,13 +108,15 @@ export function SearchBar({ onSendMessage }: SearchBarProps) {
                       <Image
                         src={option.imgSrc}
                         alt="arrow-up"
-                        width={16}
-                        height={16}
+                        width={12}
+                        height={12}
                       />
-                      <div className="font-semibold">{option.label}</div>
+                      <div className="text-sm font-semibold">
+                        {option.label}
+                      </div>
                     </div>
 
-                    <div className="text-sm text-gray-500">
+                    <div className="text-xs font-normal text-gray-500">
                       {option.description}
                     </div>
                   </button>
@@ -127,20 +129,20 @@ export function SearchBar({ onSendMessage }: SearchBarProps) {
               checked={searchInternet}
               onCheckedChange={setSearchInternet}
             />
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-normal text-gray-700">
               Search Internet
             </span>
           </div>
         </div>
         <button
-          className="rounded-full bg-[#1E2124] p-2"
+          className="flex justify-center items-center rounded-full bg-[#1E2124] w-[26px] h-[26px] p-0"
           onClick={handleSendMessage}
         >
           <Image
             src="/icons/arrow-up.svg"
             alt="arrow-up"
-            width={24}
-            height={24}
+            width={16}
+            height={16}
           />
         </button>
       </div>

@@ -63,6 +63,14 @@ const ChatList = () => {
         { id: '2', name: 'Code Review for Project X' },
         { id: '3', name: 'Grammar Correction Request' },
         { id: '4', name: 'Code Review for Project X' },
+        { id: '1', name: 'Grammar Correction Request' },
+        { id: '2', name: 'Code Review for Project X' },
+        { id: '3', name: 'Grammar Correction Request' },
+        { id: '4', name: 'Code Review for Project X' },
+        { id: '1', name: 'Grammar Correction Request' },
+        { id: '2', name: 'Code Review for Project X' },
+        { id: '3', name: 'Grammar Correction Request' },
+        { id: '4', name: 'Code Review for Project X' },
       ],
     },
     {
@@ -72,7 +80,7 @@ const ChatList = () => {
   ];
 
   return (
-    <div className="text-black h-96 overflow-y-auto overflow-hidden">
+    <div className="text-black">
       {taskGroups.map((group, index) => (
         <TaskGroup key={index} {...group} />
       ))}

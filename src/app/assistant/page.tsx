@@ -24,7 +24,6 @@ export default function Assistant() {
     setMessages([...messages, newMessage]);
     setShowWelcome(false);
 
-    // Simulate Minosia's response
     setTimeout(() => {
       const minosiaResponse: ChatMessage = {
         content:

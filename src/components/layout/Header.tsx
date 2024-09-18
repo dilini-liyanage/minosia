@@ -46,9 +46,10 @@ export function Header() {
             alt={headerInfo.title}
             width={24}
             height={24}
+            className="h-[24px] w-[24px]"
           />
-          <h1 className="text-lg font-semibold ml-3">{headerInfo.title}</h1>
-          <span className="ms-5 text-lg text-gray-500">
+          <h1 className="text-sm font-semibold ml-2">{headerInfo.title}</h1>
+          <span className="ms-5 text-sm text-[#1E1E1E]">
             {headerInfo.time} Hours ago
           </span>
         </div>
