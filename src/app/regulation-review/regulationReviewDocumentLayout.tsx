@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { createRoot } from 'react-dom/client';
 
 import AnalysisReport from './AnalysisReport';
@@ -29,6 +29,15 @@ const RegulationReviewDocumentLayout = () => {
   const [totalPages, setTotalPages] = useState(1);
   const contentRef = useRef<HTMLDivElement>(null);
   const [content, setContent] = useState<React.ReactNode[][]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const highlightWords: Record<HighlightWord, string> = {
     tlv: 'Tandvårds- och läkemedelsförmånsverket, the Swedish Dental and Pharmaceutical Benefits Agency',
@@ -306,17 +315,24 @@ const RegulationReviewDocumentLayout = () => {
                 <div className="text-base font-semibold mb-3 border-b pb-1">
                   Highlights
                 </div>
-                {Object.entries(highlightWords).map(([word, definition]) => (
-                  <div key={word} className="mb-3 border-b pb-1">
-                    <div className="flex gap-2 items-center">
-                      <div
-                        className={`w-2 h-2 rounded-full ${highlightColors[word as HighlightWord]}`}
-                      ></div>
-                      <div className="font-semibold text-sm">{word}: </div>
-                    </div>
-                    <div className="text-sm">{definition}</div>
+                {isLoading ? (
+                  <div className="flex items-center justify-center h-40">
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <span>Loading highlights...</span>
                   </div>
-                ))}
+                ) : (
+                  Object.entries(highlightWords).map(([word, definition]) => (
+                    <div key={word} className="mb-3 border-b pb-1">
+                      <div className="flex gap-2 items-center">
+                        <div
+                          className={`w-2 h-2 rounded-full ${highlightColors[word as HighlightWord]}`}
+                        ></div>
+                        <div className="font-semibold text-sm">{word}: </div>
+                      </div>
+                      <div className="text-sm">{definition}</div>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           </div>

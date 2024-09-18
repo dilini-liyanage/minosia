@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { X } from 'lucide-react';
 import Image from 'next/image';
@@ -20,11 +20,21 @@ interface FileData {
   title: string;
 }
 
-const FileUploadBar = () => {
+interface FileUploadBarProps {
+  onFileUploadChange: (hasUploadedFile: boolean) => void;
+}
+
+const FileUploadBar: React.FC<FileUploadBarProps> = ({
+  onFileUploadChange,
+}) => {
   const [selectedRegulation, setSelectedRegulation] = useState('');
   const [selectedApplicationType, setSelectedApplicationType] = useState('');
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [files, setFiles] = useState<FileData[]>([]);
+
+  useEffect(() => {
+    onFileUploadChange(files.length > 0);
+  }, [files, onFileUploadChange]);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];

@@ -27,7 +27,7 @@ const AnalysisItem: React.FC<AnalysisItemProps> = ({
       <span className="font-medium text-sm">{title}</span>
       <div className="flex items-center">
         <span
-          className={`mr-2 px-3 py-1 text-sm rounded-full ${
+          className={`mr-2 px-3 py-1 text-sm rounded-lg ${
             status === 'Partially Complies With'
               ? 'bg-green-100 text-green-800'
               : status === 'Does Not Comply With'
@@ -104,7 +104,7 @@ const AnalysisResults: React.FC = () => {
             'The cost-effectiveness analysis partially meets the requirements, but some areas need improvement for full compliance.',
         },
       ]);
-    }, 500);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
